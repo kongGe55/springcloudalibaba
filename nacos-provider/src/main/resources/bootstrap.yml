@@ -1,0 +1,21 @@
+server:
+  port: 1111
+spring:
+  profiles:
+    active: dev
+  application:
+    name: provider
+  cloud:
+    nacos:
+      config:
+        server-addr: 81.68.138.188:8848
+        file-extension: yml
+        prefix: nacos-provider
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+feign:
+  hystrix:
+    enabled: true

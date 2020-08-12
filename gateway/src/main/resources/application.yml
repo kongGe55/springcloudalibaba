@@ -1,0 +1,37 @@
+server:
+  port: 9999
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 81.68.138.188:8848
+    gateway:
+      # 配置路由规则
+      routes:
+        # 采用自定义路由 ID（有固定用法，不同的 id 有不同的功能，详见：https://cloud.spring.io/spring-cloud-gateway/2.0.x/single/spring-cloud-gateway.html#gateway-route-filters）
+        - id: NACOS-CONSUMER
+          # 采用 LoadBalanceClient 方式请求，以 lb:// 开头，后面的是注册在 Nacos 上的服务名
+          uri: lb://consumer
+          # Predicate 翻译过来是“谓词”的意思，必须，主要作用是匹配用户的请求，有很多种用法
+          predicates:
+            - Path=/consumer/**
+          filters:
+            - StripPrefix=1
+        # 路由到百度页面
+        - id: baidu_route
+          uri: http://www.baidu.com
+          predicates:
+            - Path=/baidu/**
+          filters:
+            - StripPrefix=1
+#      discovery:
+#        locator:
+#          enabled: true
+#      discovery:
+#        locator:
+#          enabled: true
+  application:
+    name: gateway
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
