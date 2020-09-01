@@ -29,6 +29,7 @@ public class ProviderController {
     @SentinelResource(value="hi")
     public String hi(@RequestParam(value = "name",
             defaultValue = "forezp",required = false)String name){
+        logger.info("ceshiacsacacascascascasc");
         return "hi "+name;
     }
     @RequestMapping("/username")

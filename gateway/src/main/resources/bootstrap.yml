@@ -3,6 +3,10 @@ server:
 spring:
   cloud:
     nacos:
+      config:
+        server-addr: 81.68.138.188:8848
+        file-extension: yml
+        prefix: getaway
       discovery:
         server-addr: 81.68.138.188:8848
     gateway:
@@ -32,6 +36,3 @@ spring:
 #          enabled: true
   application:
     name: gateway
-logging:
-  level:
-    org.springframework.cloud.gateway: debug

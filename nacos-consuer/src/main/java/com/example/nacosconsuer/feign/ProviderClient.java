@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Date: 2020/7/23 17:20
  * @Description:
  */
-@FeignClient(value = "nacos-provider",fallback = ProviderClientFallBack.class)
+@FeignClient(value = "provider",fallback = ProviderClientFallBack.class)
 public interface ProviderClient {
     @GetMapping("/hi")
     String hi(@RequestParam(value = "name",
